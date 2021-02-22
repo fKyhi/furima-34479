@@ -2,7 +2,7 @@
 
 | Column             | Type     | Options                   |
 | ------------------ | -------- | ------------------------- |
-| nickname           | string   |                           |
+| nickname           | string   | null: false               |
 | email              | string   | unique: true  null: false |
 | encrypted_password | string   | null: false               |
 | last_name          | string   | null: false               |
@@ -20,17 +20,17 @@
 
 ## items名
 
-| Column                       | Type       | Options           |
-| ---------------------------- | ---------- | ----------------- |
-| name                         | string     | null: false       |
-| item_explain                 | text       | null: false       |
-| item_category_id             | integer    | null: false       |
-| item_state_id                | integer    | null: false       |
-| item_shipping_fee_status_id  | integer    | null: false       |
-| prefecture_id                | integer    | null: false       |
-| item_scheduled_delivery_id   | integer    | null: false       |
-| item_price                   | integer    | null: false       |
-| user                         | references | foreign_key: true |
+| Column                  | Type       | Options           |
+| ----------------------- | ---------- | ----------------- |
+| name                    | string     | null: false       |
+| explain                 | text       | null: false       |
+| category_id             | integer    | null: false       |
+| state_id                | integer    | null: false       |
+| shipping_fee_status_id  | integer    | null: false       |
+| prefecture_id           | integer    | null: false       |
+| scheduled_delivery_id   | integer    | null: false       |
+| price                   | integer    | null: false       |
+| user                    | references | foreign_key: true |
 
 
 ### Association
@@ -54,15 +54,15 @@
 
 ## orders名
 
-| Column             | Type       | Options           |
-| ------------------ | ---------- | ----------------- |
-| order_post_code    | string     | null: false       |
-| prefecture_id      | integer    | null: false       |
-| order_city         | string     | null: false       |
-| order_addressed    | string     | null: false       |
-| order_building     | string     |                   |
-| order_phone_number | string     | null: false       |
-| purchase           | references | foreign_key: true |
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| post_code     | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| addressed     | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| purchase      | references | foreign_key: true |
 
 
 ### Association
