@@ -101,6 +101,16 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include 'First name kana is must NOT contain any other characters than alphanumerics.'
       end
+      it 'last_nameが漢字・ひらがな・カタカナ以外では登録できない' do
+        @user.last_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name 全角文字を使用してください"
+      end
+      it 'first_nameが漢字・ひらがな・カタカナ以外では登録できない' do
+        @user.first_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name 全角文字を使用してください"
+      end
     end
   end
 end
