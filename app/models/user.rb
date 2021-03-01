@@ -16,9 +16,9 @@ class User < ApplicationRecord
       validates :last_name_kana
       validates :first_name_kana
     end
-    
+
     validates :user_birth_date
   end
-    VALID_PASSWORD_REGIX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
-    validates :password, format: { with: VALID_PASSWORD_REGIX }
+  VALID_PASSWORD_REGIX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
+  validates :password, format: { with: VALID_PASSWORD_REGIX }
 end

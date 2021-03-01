@@ -78,13 +78,13 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid"
+        expect(@user.errors.full_messages).to include 'Password is invalid'
       end
       it 'passwordが全角では登録できないこと' do
         @user.password = '１１１aaa'
         @user.password_confirmation = '１１１aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid"
+        expect(@user.errors.full_messages).to include 'Password is invalid'
       end
       it '重複したemailが存在する場合は保存できない' do
         @user.save
@@ -95,7 +95,7 @@ RSpec.describe User, type: :model do
       it 'emailに@が無いと登録できない' do
         @user.email = 'test.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
+        expect(@user.errors.full_messages).to include 'Email is invalid'
       end
       it 'last_name_kanaが全角カタカナでなければ登録できない' do
         @user.last_name_kana = 'あいうえお'
@@ -110,12 +110,12 @@ RSpec.describe User, type: :model do
       it 'last_nameが漢字・ひらがな・カタカナ以外では登録できない' do
         @user.last_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'Last name 全角文字を使用してください'
       end
       it 'first_nameが漢字・ひらがな・カタカナ以外では登録できない' do
         @user.first_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'First name 全角文字を使用してください'
       end
     end
   end

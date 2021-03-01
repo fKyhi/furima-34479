@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name                   {'aaa'}
-    explain                {'aaa'}
+    name                   { 'aaa' }
+    explain                { 'aaa' }
     category_id            { 2 }
     state_id               { 2 }
     shipping_fee_status_id { 2 }
@@ -14,6 +14,5 @@ FactoryBot.define do
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
-
   end
 end
