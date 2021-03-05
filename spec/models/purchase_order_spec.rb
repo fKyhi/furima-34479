@@ -7,7 +7,7 @@ RSpec.describe PurchaseOrder, type: :model do
     end
 
     context '商品購入できたとき' do
-      it 'post_code、prefecture_id、city、addressed、building、phone_numberが存在すれば購入できる' do
+      it 'post_code、prefecture_id、city、addressed、building、phone_number、tokenが存在すれば購入できる' do
         expect(@purchase_order).to be_valid
       end
       it 'buildingが存在しなくても購入できる' do
@@ -45,6 +45,11 @@ RSpec.describe PurchaseOrder, type: :model do
         @purchase_order.phone_number = ' '
         @purchase_order.valid?
         expect(@purchase_order.errors.full_messages).to include ("Phone number can't be blank")
+      end
+      it 'tokenが存在しないとき購入できない' do
+        @purchase_order.token = nil
+        @purchase_order.valid?
+        expect(@purchase_order.errors.full_messages).to include ("Token can't be blank")
       end
     end
   end
