@@ -3,7 +3,6 @@ class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index]
   before_action :move_to_root_path, only: [:index]
 
-
   def index
     @purchase_order = PurchaseOrder.new
     @item = Item.find(params[:item_id])
