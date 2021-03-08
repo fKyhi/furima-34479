@@ -19,37 +19,38 @@ RSpec.describe PurchaseOrder, type: :model do
       it 'post_codeが空だと購入できない' do
         @purchase_order.post_code = ' '
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+        expect(@purchase_order.errors.full_messages).to include("Post code can't be blank",
+                                                                'Post code is invalid. Include hyphen(-)')
       end
       it 'post_codeに[-]が存在しないとき購入できない' do
         @purchase_order.post_code = '1111111'
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが1のとき購入できない' do
         @purchase_order.prefecture_id = 1
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("Prefecture can't be blank")
+        expect(@purchase_order.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'cityが存在しないとき購入できない' do
         @purchase_order.city = ' '
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("City can't be blank")
+        expect(@purchase_order.errors.full_messages).to include("City can't be blank")
       end
       it 'addressedが存在しないとき購入できない' do
         @purchase_order.addressed = ' '
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("Addressed can't be blank")
+        expect(@purchase_order.errors.full_messages).to include("Addressed can't be blank")
       end
       it 'phone_numberが存在しないとき購入できない' do
         @purchase_order.phone_number = ' '
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("Phone number can't be blank")
+        expect(@purchase_order.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'tokenが存在しないとき購入できない' do
         @purchase_order.token = nil
         @purchase_order.valid?
-        expect(@purchase_order.errors.full_messages).to include ("Token can't be blank")
+        expect(@purchase_order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
