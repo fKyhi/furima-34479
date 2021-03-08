@@ -1,13 +1,13 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+
+
   def index
     @purchase_order = PurchaseOrder.new
     @item = Item.find(params[:item_id])
   end
 
   def create
-    # @purchase = Purchase.create(purchase_params)
-    # Order.create(order_params)
-    # redirect_to root_path
     @item = Item.find(params[:item_id])
     @purchase_order = PurchaseOrder.new(purchase_params)
     if @purchase_order.valid?
@@ -35,12 +35,4 @@ class PurchasesController < ApplicationController
       currency: 'jpy'
     )
   end
-
-  # def purchase_params
-  #   params.permit(:item_id).merge(user_id: current_user.id)
-  # end
-
-  # def order_params
-  #   params.permit(:post_code, :prefecture_id, :city, :addressed, :building, :phone_number).merge(purchase_id: @purchase.id)
-  # end
 end
