@@ -3,11 +3,14 @@ require 'rails_helper'
 RSpec.describe PurchaseOrder, type: :model do
   describe '商品購入機能' do
     before do
-      @purchase_order = FactoryBot.build(:purchase_order)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @purchase_order = FactoryBot.build(:purchase_order, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '商品購入できたとき' do
-      it 'post_code、prefecture_id、city、addressed、building、phone_number、tokenが存在すれば購入できる' do
+      it 'post_code、prefecture_id、city、addressed、building、phone_number、token、user_id、item_idが存在すれば購入できる' do
         expect(@purchase_order).to be_valid
       end
       it 'buildingが存在しなくても購入できる' do
@@ -51,6 +54,16 @@ RSpec.describe PurchaseOrder, type: :model do
         @purchase_order.token = nil
         @purchase_order.valid?
         expect(@purchase_order.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが存在しないとき購入できない' do
+        @purchase_order.user_id = ''
+        @purchase_order.valid?
+        expect(@purchase_order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが存在しないとき購入できない' do
+        @purchase_order.item_id = ''
+        @purchase_order.valid?
+        expect(@purchase_order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
