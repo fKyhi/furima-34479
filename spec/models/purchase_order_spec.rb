@@ -50,6 +50,16 @@ RSpec.describe PurchaseOrder, type: :model do
         @purchase_order.valid?
         expect(@purchase_order.errors.full_messages).to include("Phone number can't be blank")
       end
+      it 'phone_numberが12桁以上のとき購入できない' do
+        @purchase_order.phone_number = '000000000000'
+        @purchase_order.valid?
+        expect(@purchase_order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it 'phone_numberが英数混合のとき購入できない' do
+        @purchase_order.phone_number = '000000aaaaa'
+        @purchase_order.valid?
+        expect(@purchase_order.errors.full_messages).to include("Phone number is not a number", "Phone number is invalid")
+      end
       it 'tokenが存在しないとき購入できない' do
         @purchase_order.token = nil
         @purchase_order.valid?
